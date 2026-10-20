@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LeadAIO Launch Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The eight launch initiatives that take LeadAIO to category leader in AI Optimization (AIO, GEO, AEO).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (max 1120px) of full-width bands; the hero pairs the thesis with a mock AI answer that cites LeadAIO. */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --sunk:#E9EDF4; --ink:#0D1424; --muted:#556079; --line:#D8DEE9;
+  --accent:#2440E6; --accent-ink:#FFFFFF; --accent-soft:#E5E9FF;
+  --cite:#A35F00; --cite-soft:#FFF0D6;
+  --p-foundation:#2440E6; --p-platform:#0B7F74; --p-proof:#A35F00; --p-reach:#BE2F66;
+  --shadow:0 1px 2px rgba(13,20,36,.06),0 8px 24px rgba(13,20,36,.08);
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#090D17; --surface:#111726; --sunk:#0D1220; --ink:#E7EBF4; --muted:#97A1B8; --line:#232C42;
+    --accent:#8C9DFF; --accent-ink:#0A0E18; --accent-soft:#1A2248;
+    --cite:#F3B95E; --cite-soft:#2C2312;
+    --p-foundation:#8C9DFF; --p-platform:#4CD0BF; --p-proof:#F3B95E; --p-reach:#F27BA7;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090D17; --surface:#111726; --sunk:#0D1220; --ink:#E7EBF4; --muted:#97A1B8; --line:#232C42;
+  --accent:#8C9DFF; --accent-ink:#0A0E18; --accent-soft:#1A2248;
+  --cite:#F3B95E; --cite-soft:#2C2312;
+  --p-foundation:#8C9DFF; --p-platform:#4CD0BF; --p-proof:#F3B95E; --p-reach:#F27BA7;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.section{padding-block:72px;border-top:1px solid var(--line)}
+.section-head{display:grid;gap:12px;max-width:68ch;margin-bottom:36px}
+.section-head h2{font-size:clamp(28px,4vw,40px);font-weight:700}
+.section-head p{color:var(--muted)}
+
+/* Top bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.logo{font:800 20px/1 var(--f-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;flex:none}
+.logo b{color:var(--accent);font-weight:800}
+.logo-mark{width:22px;height:22px;border-radius:6px;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);font:700 11px/1 var(--f-mono)}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap}
+.nav a:hover{color:var(--ink);background:var(--sunk)}
+
+/* Hero */
+.hero{padding-block:56px 72px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,68px);font-weight:800;margin:16px 0 20px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{font-size:18px;color:var(--muted);max-width:52ch}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 13px/1 var(--f-body);padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+
+/* Answer engine mock */
+.engine{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.engine-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);font:500 12px/1 var(--f-mono);color:var(--muted)}
+.engine-top .live{display:flex;align-items:center;gap:8px}
+.engine-top .live .dot{background:var(--p-platform)}
+.queries{display:flex;gap:6px;padding:12px 16px 0;flex-wrap:wrap}
+.q{border:1px solid var(--line);background:var(--sunk);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--muted)}
+.q[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.prompt{margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:var(--sunk);font-weight:500;display:flex;gap:10px}
+.prompt span:first-child{font:500 12px/1.9 var(--f-mono);color:var(--muted)}
+.answer{padding:16px 18px 6px;min-height:200px;font-size:15px}
+.answer p+p{margin-top:10px}
+.cite{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;margin:0 2px;border-radius:4px;background:var(--cite-soft);color:var(--cite);font:500 11px/1 var(--f-mono);vertical-align:2px}
+.brand{font-weight:600;background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
+.caret{display:inline-block;width:8px;height:1em;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sources{display:grid;gap:6px;padding:10px 18px 14px}
+.src{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--muted)}
+.src .cite{flex:none}
+.engine-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:var(--sunk);font-size:13px;color:var(--muted)}
+.mini{font:500 12px/1 var(--f-mono);border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:5px 8px;cursor:pointer;color:var(--ink)}
+.mini:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Brief / quote */
+.brief{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:start}
+.quote{font:600 clamp(22px,2.8vw,30px)/1.3 var(--f-display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.quote-by{margin-top:16px;color:var(--muted);font-size:14px}
+.terms{display:grid;gap:12px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:4px}
+.term h3{font-size:18px;display:flex;align-items:baseline;gap:10px}
+.term h3 small{font:500 12px/1 var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.term p{color:var(--muted);font-size:14px}
+
+/* Pillars + initiatives */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:24px}
+.filter{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.filter[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.progress{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.bar{width:120px;height:6px;border-radius:99px;background:var(--sunk);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{position:relative;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;cursor:pointer;display:grid;grid-template-rows:auto auto 1fr auto;gap:10px;transition:transform .15s,border-color .15s,opacity .2s}
+.card:hover{transform:translateY(-2px);border-color:var(--pc)}
+.card.dim{opacity:.28}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.num{font:500 13px/1 var(--f-mono);color:var(--pc)}
+.tag{font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pc)}
+.card h3{font-size:20px;font-weight:700}
+.card p{font-size:14px;color:var(--muted)}
+.card-foot{display:flex;justify-content:space-between;align-items:center;font:500 12px/1 var(--f-mono);color:var(--muted);padding-top:10px;border-top:1px dashed var(--line)}
+.card-foot .open{color:var(--ink)}
+
+/* Roadmap */
+.gantt-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.gantt{min-width:760px;display:grid;grid-template-columns:200px repeat(16,minmax(0,1fr));position:relative}
+.g-phase{grid-row:1;padding:12px 10px;font:500 12px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
+.g-phase b{display:block;color:var(--ink);font:700 15px/1.2 var(--f-display);letter-spacing:-.01em;text-transform:none;margin-top:4px}
+.g-wk{grid-row:2;font:400 11px/1 var(--f-mono);color:var(--muted);text-align:center;padding:8px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.g-label{padding:10px 12px;font-size:14px;font-weight:500;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center;background:none;border-left:0;border-right:0;border-top:0;text-align:left;cursor:pointer}
+.g-label span{font:500 12px/1 var(--f-mono);color:var(--pc)}
+.g-cell{border-bottom:1px solid var(--line);position:relative}
+.g-bar{margin:9px 0;height:24px;border-radius:6px;background:var(--pc);border:0;cursor:pointer;display:flex;align-items:center;padding:0 8px;font:500 11px/1 var(--f-mono);color:var(--bg);white-space:nowrap;overflow:hidden}
+.g-bar.ongoing{background:linear-gradient(90deg,var(--pc) 70%,color-mix(in srgb,var(--pc) 15%,transparent))}
+.g-launch{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);pointer-events:none}
+.g-launch::after{content:"LAUNCH";position:absolute;top:56px;left:6px;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--ink);background:var(--surface);padding:3px 4px;border-radius:3px}
+.note{margin-top:14px;font-size:13px;color:var(--muted)}
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.path h3{font-size:17px}
+.path p{font-size:14px;color:var(--muted)}
+
+/* Implementation plan */
+.tabs{display:flex;gap:4px;padding:4px;background:var(--sunk);border-radius:10px;flex-wrap:wrap}
+.tab{border:0;background:none;border-radius:7px;padding:8px 14px;font-size:14px;cursor:pointer;color:var(--muted);text-align:left}
+.tab small{display:block;font:500 11px/1.2 var(--f-mono);color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.sel{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.sel select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:100%}
+.plan-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+.plan-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.plan-table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+.plan-table th{text-align:left;font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line)}
+.plan-table td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.plan-table tr:last-child td{border-bottom:0}
+.plan-table td:first-child{font:500 13px/1.5 var(--f-mono);white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.plan-table td:nth-child(2){white-space:nowrap}
+.plan-table .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;background:var(--surface);cursor:pointer}
+.plan-table .pill.static{cursor:default}
+.plan-table .milestone td{background:var(--accent-soft)}
+.plan-table .milestone td:last-child{font-weight:600}
+.exit{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px;font-size:14px}
+.exit h3{font-size:18px}
+.exit ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.exit li{display:flex;gap:10px}
+.exit li::before{content:"✓";color:var(--p-platform);font-weight:700;flex:none}
+.sub-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;margin-top:48px}
+.sub-h{font-size:22px;margin-bottom:8px}
+.sub-p{color:var(--muted);font-size:14px;margin-bottom:14px}
+.risks{display:grid;gap:10px}
+.risk{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:4px;font-size:14px}
+.risk b{font-weight:600}
+.risk .imp{font:500 12px/1.4 var(--f-mono);color:var(--p-reach)}
+.risk p{color:var(--muted)}
+
+/* Dependency map */
+.map-wrap{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px;align-items:start}
+.map-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+#mapSvg{display:block;min-width:680px;width:100%;height:auto}
+#mapSvg .edge{fill:none;stroke:var(--line);stroke-width:2;transition:stroke .2s,opacity .2s}
+#mapSvg .edge.back{stroke-dasharray:5 5}
+#mapSvg .edge.on{stroke:var(--accent);stroke-width:2.5}
+#mapSvg .edge.off{opacity:.25}
+#mapSvg .node{cursor:pointer}
+#mapSvg .node rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5;transition:stroke .2s,opacity .2s}
+#mapSvg .node.on rect{stroke:var(--accent);stroke-width:2.5}
+#mapSvg .node.off{opacity:.35}
+#mapSvg .node text{fill:var(--ink);font:600 14px var(--f-body)}
+#mapSvg .node .n{font:500 11px var(--f-mono)}
+#mapSvg .col{fill:var(--muted);font:500 11px var(--f-mono);letter-spacing:.1em}
+#mapSvg .node:focus{outline:none}
+#mapSvg .node:focus-visible rect{stroke:var(--accent);stroke-width:3}
+.map-info{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;font-size:14px}
+.map-info h3{font-size:18px}
+.map-info p{color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend svg{flex:none}
+
+/* Scorecard */
+.score{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:8px;align-content:start}
+.metric .k{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.metric h3{font-size:20px}
+.metric p{font-size:14px;color:var(--muted)}
+.metric .feeds{font:500 12px/1.4 var(--f-mono);color:var(--muted)}
+
+/* Questions */
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;counter-reset:q}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.qa h3{font:600 16px/1.35 var(--f-body);letter-spacing:0}
+.qa p{font-size:14px;color:var(--muted)}
+.qa .rel{font:500 12px/1 var(--f-mono);color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-block:32px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* Drawer */
+.scrim{position:fixed;inset:0;background:rgba(5,8,15,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);z-index:50;background:var(--surface);border-left:1px solid var(--line);box-shadow:var(--shadow);transform:translateX(102%);transition:transform .25s ease;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer.show{transform:none}
+.d-head{padding:20px 24px 16px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.d-head-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.d-head h2{font-size:28px;font-weight:700}
+.d-scope{color:var(--muted);font-size:15px}
+.x{border:1px solid var(--line);background:var(--sunk);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1;flex:none}
+.d-body{overflow-y:auto;padding:20px 24px 32px;display:grid;gap:24px;align-content:start}
+.d-sec{display:grid;gap:10px}
+.d-sec h4{margin:0;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.d-sec p{font-size:15px}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.checks label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px}
+.checks label:hover{background:var(--sunk)}
+.checks input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+.checks input:checked+span{color:var(--muted);text-decoration:line-through}
+.kpis{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.kpis li{display:flex;gap:10px;font-size:14px;padding:10px 12px;border-radius:8px;background:var(--sunk)}
+.kpis li::before{content:"↗";color:var(--pc);font-family:var(--f-mono)}
+.links{display:flex;flex-wrap:wrap;gap:6px}
+.links button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.links button:hover{border-color:var(--accent)}
+.links .none{font-size:13px;color:var(--muted)}
+.d-nav{display:flex;justify-content:space-between;gap:8px;padding:14px 24px;border-top:1px solid var(--line)}
+.d-nav button{border:1px solid var(--line);background:var(--sunk);border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer}
+
+@media (max-width:960px){
+  .hero .wrap,.brief,.map-wrap,.plan-grid,.sub-grid{grid-template-columns:minmax(0,1fr)}
+  .sel{margin-left:0}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .score,.paths{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .section{padding-block:52px}
+  .hero{padding-block:36px 52px}
+  .nav{display:none}
+  .grid,.qs{grid-template-columns:minmax(0,1fr)}
+  .progress{margin-left:0;width:100%}
+  .drawer{top:auto;height:88%;width:100%;border-left:0;border-top:1px solid var(--line);border-radius:16px 16px 0 0;transform:translateY(102%);padding-left:env(safe-area-inset-left,0px)}
+  .d-head,.d-body,.d-nav{padding-left:18px;padding-right:18px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">AI</span>Lead<b>AIO</b></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#brief">The brief</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#plan">Plan</a>
+      <a href="#map">How they connect</a>
+      <a href="#scorecard">Scorecard</a>
+      <a href="#questions">Open questions</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Rebrand &amp; launch · Mid-market and enterprise</span>
+        <h1>Make LeadAIO the answer AI gives for <em>AI Optimization</em>.</h1>
+        <p class="lede">Eight initiatives take us from a new brand to category leader in AIO, GEO and AEO. This page lays out what each one delivers, when it lands, and how they depend on each other.</p>
+        <div class="hero-meta" id="pillarChips"></div>
+      </div>
+
+      <div class="engine" aria-label="Example AI answer the launch is building toward">
+        <div class="engine-top">
+          <span class="live"><span class="dot"></span>AI answer engine · target state</span>
+          <span id="engineCount">1 / 3</span>
+        </div>
+        <div class="queries" role="group" aria-label="Choose a buyer question" id="queries"></div>
+        <div class="prompt"><span>Q</span><span id="promptText"></span></div>
+        <div class="answer" id="answer" aria-live="polite"></div>
+        <div class="sources" id="sources"></div>
+        <div class="engine-foot"><span>Built by initiatives</span><span id="drivers" class="links"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="brief">
+    <div class="wrap brief">
+      <div>
+        <span class="eyebrow">The brief</span>
+        <blockquote class="quote" style="margin-top:16px">“Our goal is not simply to announce LeadAIO. It is to launch a stronger, more credible enterprise brand and establish LeadAIO as the category leader in AI Optimization (AIO).”</blockquote>
+        <p class="quote-by">Eric Bibi, on the rebrand and launch priorities</p>
+      </div>
+      <div class="terms">
+        <span class="eyebrow">What we sell</span>
+        <div class="term"><h3>AIO <small>AI Optimization</small></h3><p>The umbrella discipline: making a brand visible, accurate and recommended wherever AI systems answer buyer questions.</p></div>
+        <div class="term"><h3>GEO <small>Generative Engine Optimization</small></h3><p>Getting cited inside generated answers from ChatGPT, Gemini, Perplexity, Copilot and Claude.</p></div>
+        <div class="term"><h3>AEO <small>Answer Engine Optimization</small></h3><p>Structuring content so it wins direct answers: Google AI Overviews, featured snippets and voice assistants.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="initiatives">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The eight priorities</span>
+        <h2>Four pillars, eight initiatives</h2>
+        <p>Numbers follow Eric's priority order. Filter by pillar, then open any initiative to see its deliverables, proposed KPIs and dependencies.</p>
+      </div>
+      <div class="toolbar">
+        <div id="filters" style="display:flex;flex-wrap:wrap;gap:8px" role="group" aria-label="Filter by pillar"></div>
+        <div class="progress" title="Checklist progress is saved in this browser only">
+          <span id="progText">0 of 0 deliverables checked</span>
+          <span class="bar"><i id="progBar"></i></span>
+        </div>
+      </div>
+      <div class="grid" id="cards"></div>
+    </div>
+  </section>
+
+  <section class="section" id="roadmap">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Proposed sequencing</span>
+        <h2>A 16-week path to launch and scale</h2>
+        <p>Week numbers are relative to kickoff. The launch date itself is a deliverable of initiative 01, so these weeks shift once it is set. Click a bar for details.</p>
+      </div>
+      <div class="gantt-scroll"><div class="gantt" id="gantt"></div></div>
+      <p class="note">Faded bar ends mean the work continues after week 16.</p>
+      <div class="paths">
+        <div class="path"><span class="eyebrow">Critical path</span><h3>Brand → Website → Launch</h3><p>The site can't be built until the brand is locked, and paid campaigns can't run without its landing pages. Any slip in 01 moves launch day.</p></div>
+        <div class="path"><span class="eyebrow">Start this week</span><h3>Customer proof and our own AI baseline</h3><p>Customer approvals take the longest, and we need a measured "before" for our own AI visibility so we can show the "after".</p></div>
+        <div class="path"><span class="eyebrow">After launch</span><h3>Reach compounds</h3><p>PR, podcasts, webinars and partnerships create the third-party mentions AI models cite, which feeds straight back into our own AIO results.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="plan">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Implementation plan</span>
+        <h2>Week by week, phase by phase</h2>
+        <p>Every task, who owns it, and what has to be true before we move to the next phase. Pick a phase, or filter to one initiative.</p>
+      </div>
+      <div class="toolbar">
+        <div class="tabs" role="tablist" aria-label="Phase" id="phaseTabs"></div>
+        <label class="sel">Initiative
+          <select id="planFilter"><option value="0">All initiatives</option></select>
+        </label>
+      </div>
+      <div class="plan-grid">
+        <div class="plan-scroll"><table class="plan-table"><thead><tr><th>Week</th><th>Initiative</th><th>Tasks</th></tr></thead><tbody id="planBody"></tbody></table></div>
+        <aside class="exit" id="planExit"></aside>
+      </div>
+
+      <div class="sub-grid">
+        <div>
+          <h3 class="sub-h">Owners and cadence</h3>
+          <p class="sub-p">One accountable owner per initiative, named in week 1. Weekly 30-minute launch stand-up, bi-weekly exec review with Eric, monthly scorecard from week 8.</p>
+          <div class="plan-scroll"><table class="plan-table"><thead><tr><th>Initiative</th><th>Suggested owner</th><th>Approver</th></tr></thead><tbody id="ownerBody"></tbody></table></div>
+        </div>
+        <div>
+          <h3 class="sub-h">Risks and mitigations</h3>
+          <p class="sub-p">The things most likely to move launch day, and what we do about them now.</p>
+          <div class="risks" id="risks"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="map">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Dependencies</span>
+        <h2>How the initiatives connect</h2>
+        <p>Select an initiative to highlight what it needs and what it unlocks. The dashed lines are feedback loops: results from later work feed earlier work.</p>
+      </div>
+      <div class="map-wrap">
+        <div class="map-scroll"><svg id="mapSvg" viewBox="0 0 900 380" role="group" aria-label="Initiative dependency map"></svg></div>
+        <aside class="map-info" id="mapInfo" aria-live="polite"></aside>
+      </div>
+      <div class="legend" style="margin-top:12px">
+        <span><svg width="28" height="6" aria-hidden="true"><line x1="0" y1="3" x2="28" y2="3" stroke="currentColor" stroke-width="2"/></svg>needs / unlocks</span>
+        <span><svg width="28" height="6" aria-hidden="true"><line x1="0" y1="3" x2="28" y2="3" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/></svg>feedback loop</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scorecard">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How we'll know</span>
+        <h2>A launch scorecard</h2>
+        <p>Proposed measures for the team to agree on. Targets get set once we have baselines in the first four weeks.</p>
+      </div>
+      <div class="score" id="score"></div>
+    </div>
+  </section>
+
+  <section class="section" id="questions">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">For discussion</span>
+        <h2>Decisions we need from the team</h2>
+        <p>These answers unblock the roadmap. Each one names the initiatives waiting on it.</p>
+      </div>
+      <div class="qs" id="qs"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>LeadAIO · AIO, GEO and AEO for mid-market and enterprise brands</span>
+    <span>Launch plan · working draft for the team</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden="true">
+  <div class="d-head">
+    <div class="d-head-row"><span class="tag" id="dTag"></span><button class="x" id="dClose" aria-label="Close">×</button></div>
+    <h2 id="dTitle"></h2>
+    <p class="d-scope" id="dScope"></p>
+  </div>
+  <div class="d-body" id="dBody"></div>
+  <div class="d-nav"><button id="dPrev">← Previous</button><button id="dNext">Next →</button></div>
+</aside>
+
+<script>
+const PILLARS = {
+  foundation:{name:'Foundation', color:'var(--p-foundation)', blurb:'Brand everything else is built on'},
+  platform:{name:'Platform', color:'var(--p-platform)', blurb:'Where buyers and AI models find us'},
+  proof:{name:'Proof', color:'var(--p-proof)', blurb:'Evidence that sells'},
+  reach:{name:'Reach', color:'var(--p-reach)', blurb:'Demand and visibility'}
+};
+
+const INIT = [
+ {id:1, short:'Brand', title:'Finalize the new brand', pillar:'foundation',
+  scope:'Logo, colors, style guide, messaging, bios and launch roadmap.',
+  why:'Every other initiative ships in the new brand. The site, decks, ads and press kit all wait on locked logo, colors and messaging, so this sits first on the critical path.',
+  deliverables:['Logo system: primary, icon mark, mono and favicon','Color and type tokens with accessibility checks','Brand style guide (voice, imagery, layout, do/don\'t)','Positioning statement and category narrative for AIO','Messaging house: pillars, proof points, objections','Persona messaging: CMO, VP Digital, Head of SEO/Content','Company boilerplate and executive bios','Launch roadmap with a fixed launch date'],
+  kpis:['Brand signed off by end of week 4','100% of launch assets on the new brand','Message consistency across site, decks and ads'],
+  weeks:[1,4], ongoing:false, depends:[], unlocks:[2,3,4,6]},
+ {id:2, short:'Website', title:'Rebuild the LeadAIO websites', pillar:'platform',
+  scope:'Clear positioning, enterprise pages, conversion landing pages, customer proof, analytics, SEO, AIO and fast mobile performance.',
+  why:'The website is where every campaign, press hit and AI citation sends buyers. It also has to be the best example of AIO we can show a prospect.',
+  deliverables:['Sitemap and information architecture','Homepage with category positioning','Enterprise and mid-market solution pages','Service pages for AIO, GEO and AEO','Industry pages for priority verticals','Conversion landing pages with audit/demo offer','Customer proof hub: case studies, logos, testimonials','Analytics: event tracking and CRM attribution','Technical SEO and schema (Organization, Service, FAQ)','AI crawler access and llms.txt','Core Web Vitals pass on mobile'],
+  kpis:['Mobile LCP under 2.5s, CWV pass on all templates','Demo/audit conversion rate by source','Organic and AI-referred sessions'],
+  weeks:[3,11], ongoing:false, depends:[1,7], unlocks:[4,5]},
+ {id:3, short:'Sales assets', title:'Targeted marketing and sales assets', pillar:'proof',
+  scope:'Industry decks, product decks, onboarding presentations, reports, case studies, one-pagers and customer-facing materials.',
+  why:'Enterprise deals are won in meetings. Sales needs one consistent story, tailored by industry, before the launch drives new conversations.',
+  deliverables:['Master product deck','Industry decks for priority verticals','Customer onboarding presentation','One-pagers for AIO, GEO and AEO','Flagship report (e.g. state of AI search visibility)','Case study template and first published studies','Proposal and SOW templates','Asset library sales can find in one place'],
+  kpis:['Sales adoption of new decks','Share of opportunities using an industry deck','Time from first call to proposal'],
+  weeks:[4,12], ongoing:false, depends:[1,7], unlocks:[4,8]},
+ {id:4, short:'PPC', title:'LinkedIn and Facebook PPC', pillar:'reach',
+  scope:'New campaigns with targeted landing pages, audience segmentation, creative, tracking and ongoing optimization.',
+  why:'Paid social puts the new brand in front of named enterprise accounts on launch day and gives us measurable pipeline while organic and AI visibility build.',
+  deliverables:['ICP audience segments: titles, industries, company size','ABM account lists and retargeting pools','Campaign structure per segment and funnel stage','Creative sets with variants to test','Segment-specific landing pages','Tracking: LinkedIn Insight Tag, Meta Pixel and Conversions API, UTMs','Offline conversion sync from CRM','Weekly optimization and reporting cadence'],
+  kpis:['Cost per qualified lead and per SQL','Pipeline sourced and influenced','CTR and landing page conversion by segment'],
+  weeks:[10,16], ongoing:true, depends:[1,2,3], unlocks:[]},
+ {id:5, short:'Our own AIO', title:'Build LeadAIO\'s own AIO and SEO presence', pillar:'platform',
+  scope:'Show our capabilities by winning visibility across search engines and AI platforms ourselves.',
+  why:'This is our most persuasive sales proof. If buyers ask an AI who leads AI Optimization and the answer is LeadAIO, the pitch is already made.',
+  deliverables:['Baseline AI visibility audit: ChatGPT, Gemini, Perplexity, Copilot, Claude, Google AI Overviews','Tracked prompt set of category and buyer questions','Entity consistency: Wikidata, Crunchbase, G2, LinkedIn, directories','Definitive pillar content on AIO, GEO and AEO','Third-party citation and review plan','Monthly AI share-of-voice report','Publish our own results as a case study'],
+  kpis:['AI share of voice on tracked prompts','Brand mentions and citations in AI answers','Rankings for category terms'],
+  weeks:[2,16], ongoing:true, depends:[1,2], unlocks:[7]},
+ {id:6, short:'PR', title:'Leadership, company, product and innovation PR', pillar:'reach',
+  scope:'Execute the leadership, company, product and innovation announcements.',
+  why:'Credible coverage tells enterprise buyers we are serious, and news sources are among what AI models cite most, so PR directly lifts our own AIO.',
+  deliverables:['12-month announcement calendar','Rebrand and launch announcement','Leadership announcements','Product and service announcements','Innovation news: original research and data','Media list and briefing plan','Press kit and online newsroom'],
+  kpis:['Tier-1 and trade placements','Share of voice vs. competitors','Referring domains and AI citations from coverage'],
+  weeks:[9,16], ongoing:true, depends:[1,2], unlocks:[8,5]},
+ {id:7, short:'Customer proof', title:'Customer proof and thought leadership', pillar:'proof',
+  scope:'Case studies, testimonials, reports and thought leadership.',
+  why:'Enterprise buyers need evidence from peers. Proof feeds the website, the decks, the ads and the press, so it starts in week 1 even though approvals are slow.',
+  deliverables:['Shortlist of referenceable customers','Approval and legal process for naming customers','Case study interviews and quantified results','Written and video testimonials','Review profiles (G2 and similar)','Thought leadership articles under executive bylines','Customer advisory or reference program'],
+  kpis:['Published case studies with measurable results','Approved logos for the website','Proof on every key page and deck'],
+  weeks:[1,16], ongoing:true, depends:[], unlocks:[2,3,4,6]},
+ {id:8, short:'Visibility', title:'Podcasts, webinars, speaking and partnerships', pillar:'reach',
+  scope:'Expand visibility through podcasts, webinars, speaking opportunities, guest articles and strategic partnerships.',
+  why:'Leaders own the conversation. Being the people who explain AIO on stages, shows and partner channels makes the category ours.',
+  deliverables:['Speaker topics and one-sheet','Podcast target list and pitching','Webinar series on AI search','Conference call-for-papers calendar','Guest article pipeline','Partnership program: agencies and martech platforms'],
+  kpis:['Appearances and articles per month','Webinar registrants converted to pipeline','Partner-sourced pipeline'],
+  weeks:[10,16], ongoing:true, depends:[1,3,6,7], unlocks:[]}
+];
+
+const QUERIES = [
+  {label:'Category leader', q:'Who leads AI Optimization for enterprise brands?',
+   html:'<p><span class="brand">LeadAIO</span> <span class="cite">1</span> is an AI Optimization (AIO) company that helps mid-market and enterprise brands get found, cited and recommended by AI platforms such as ChatGPT, Gemini, Perplexity and Google AI Overviews.</p><p>Its services cover Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO), and it publishes measured results for its clients <span class="cite">2</span> and for its own AI visibility <span class="cite">3</span>.</p>',
+   sources:['leadaio.com · Enterprise AI Optimization','LeadAIO case study · customer results','Industry report · AI search visibility'], drivers:[2,5,6,7]},
+  {label:'AIO vs GEO vs AEO', q:'What is the difference between AIO, GEO and AEO?',
+   html:'<p><b>AIO</b> (AI Optimization) is the umbrella practice of making a brand visible and accurate across AI systems. <b>GEO</b> focuses on being cited inside generated answers, and <b>AEO</b> on winning direct answers and snippets <span class="cite">1</span>.</p><p><span class="brand">LeadAIO</span> offers all three as one program for enterprise teams <span class="cite">2</span>.</p>',
+   sources:['leadaio.com · What is AIO? The definitive guide','leadaio.com · Services'], drivers:[2,5]},
+  {label:'Get cited by AI', q:'How do I get my brand cited by ChatGPT and Perplexity?',
+   html:'<p>Start by measuring how AI platforms describe you today, then fix entity data, publish clear answer-ready content and earn mentions from sources models trust <span class="cite">1</span>.</p><p>Specialists like <span class="brand">LeadAIO</span> run this as a managed program <span class="cite">2</span>, and its webinar series walks through the process <span class="cite">3</span>.</p>',
+   sources:['LeadAIO report · How AI models choose sources','leadaio.com · AIO audit','LeadAIO webinar · Winning the AI answer'], drivers:[3,5,8]}
+];
+
+const METRICS = [
+  {k:'North star', t:'AI share of voice', d:'How often LeadAIO is named or cited across a fixed set of buyer prompts on the major AI platforms.', f:[5,6,8]},
+  {k:'Pipeline', t:'Enterprise pipeline sourced', d:'Qualified opportunities from mid-market and enterprise accounts, by channel.', f:[2,4,8]},
+  {k:'Conversion', t:'Site conversion rate', d:'Visit-to-demo and visit-to-audit rates on the new site and landing pages.', f:[2,4]},
+  {k:'Credibility', t:'Published proof', d:'Case studies with measured results, approved logos and testimonials live on site.', f:[7,3]},
+  {k:'Brand', t:'Earned coverage', d:'Tier-1 and trade placements, podcast and stage appearances, and partner mentions.', f:[6,8]},
+  {k:'Enablement', t:'Sales asset adoption', d:'Share of active deals using the new decks, one-pagers and reports.', f:[3,1]}
+];
+
+const QUESTIONS = [
+  {q:'What is the launch date?', d:'The roadmap counts back from it. Owned by the brand launch roadmap.', r:[1]},
+  {q:'Who owns each initiative?', d:'Each of the eight needs one accountable owner and a weekly check-in.', r:[1,2,3,4,5,6,7,8]},
+  {q:'Which industries do we lead with?', d:'Picks the first industry decks, landing pages and ad segments.', r:[2,3,4]},
+  {q:'Which customers can we name publicly?', d:'Approvals take the longest of anything on this list.', r:[7,2,3]},
+  {q:'Which prompts define "category leader"?', d:'The tracked prompt set becomes our north-star metric.', r:[5]},
+  {q:'What is the paid budget and channel split?', d:'Sets LinkedIn vs. Facebook spend and how many segments we can test.', r:[4]}
+];
+
+const $ = s => document.querySelector(s);
+const byId = id => INIT.find(i => i.id === id);
+const pad = n => String(n).padStart(2,'0');
+const pc = i => PILLARS[i.pillar].color;
+const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+/* Checklist state, per viewer */
+const STORE = 'leadaio-launch-checks-v1';
+let checks = {};
+try { checks = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch(e) { checks = {}; }
+function saveChecks(){ try { localStorage.setItem(STORE, JSON.stringify(checks)); } catch(e) {} }
+const ck = (id,i) => !!checks[id+'-'+i];
+function doneCount(it){ return it.deliverables.filter((_,i)=>ck(it.id,i)).length; }
+
+/* Pillar chips in hero */
+$('#pillarChips').innerHTML = Object.entries(PILLARS).map(([k,p]) =>
+  `<span class="chip"><span class="dot" style="background:${p.color}"></span>${p.name}<span style="color:var(--muted)">· ${INIT.filter(i=>i.pillar===k).map(i=>pad(i.id)).join(' ')}</span></span>`).join('');
+
+/* Answer engine */
+let qIdx = 0, typer = null;
+function linkChip(id){ const it = byId(id); return `<button type="button" data-open="${id}" style="--pc:${pc(it)}"><span class="dot" style="background:${pc(it)}"></span>${pad(id)} ${esc(it.short)}</button>`; }
+function renderQueries(){
+  $('#queries').innerHTML = QUERIES.map((q,i)=>`<button class="q" type="button" aria-pressed="${i===qIdx}" data-q="${i}">${esc(q.label)}</button>`).join('');
+}
+function showQuery(i, animate){
+  qIdx = i; renderQueries();
+  const Q = QUERIES[i];
+  $('#engineCount').textContent = `${i+1} / ${QUERIES.length}`;
+  $('#promptText').textContent = Q.q;
+  $('#sources').innerHTML = Q.sources.map((s,n)=>`<div class="src"><span class="cite">${n+1}</span><span>${esc(s)}</span></div>`).join('');
+  $('#drivers').innerHTML = Q.drivers.map(linkChip).join('');
+  const box = $('#answer');
+  clearInterval(typer);
+  if (!animate || reduceMotion){ box.innerHTML = Q.html; return; }
+  // Type out the answer while keeping inline markup intact
+  const tmp = document.createElement('div'); tmp.innerHTML = Q.html;
+  const total = tmp.textContent.length; let shown = 0;
+  typer = setInterval(()=>{
+    shown = Math.min(total, shown + 4);
+    box.innerHTML = truncateHTML(Q.html, shown) + (shown < total ? '<span class="caret"></span>' : '');
+    if (shown >= total) clearInterval(typer);
+  }, 18);
+}
+function truncateHTML(html, n){
+  const src = document.createElement('div'); src.innerHTML = html;
+  let left = n;
+  (function walk(node){
+    for (const child of [...node.childNodes]){
+      if (left <= 0){ child.remove(); continue; }
+      if (child.nodeType === 3){
+        if (child.textContent.length > left){ child.textContent = child.textContent.slice(0,left); left = 0; }
+        else left -= child.textContent.length;
+      } else walk(child);
+    }
+  })(src);
+  return src.innerHTML;
+}
+$('#queries').addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (b) showQuery(+b.dataset.q, true); });
+showQuery(0, false);
+
+/* Filters + cards */
+let filter = 'all';
+function renderFilters(){
+  const opts = [['all','All eight',null], ...Object.entries(PILLARS).map(([k,p])=>[k,p.name,p.color])];
+  $('#filters').innerHTML = opts.map(([k,n,c]) =>
+    `<button class="filter" type="button" aria-pressed="${filter===k}" data-f="${k}">${c?`<span class="dot" style="background:${c}"></span>`:''}${n}</button>`).join('');
+}
+function renderCards(){
+  $('#cards').innerHTML = INIT.map(it => {
+    const d = doneCount(it), n = it.deliverables.length;
+    return `<button class="card ${filter!=='all'&&filter!==it.pillar?'dim':''}" type="button" data-open="${it.id}" style="--pc:${pc(it)}">
+      <span class="card-top"><span class="num">${pad(it.id)}</span><span class="tag">${PILLARS[it.pillar].name}</span></span>
+      <h3>${esc(it.title)}</h3>
+      <p>${esc(it.scope)}</p>
+      <span class="card-foot"><span>Wk ${it.weeks[0]}–${it.weeks[1]}${it.ongoing?'+':''} · ${d}/${n}</span><span class="open">Open →</span></span>
+    </button>`;
+  }).join('');
+}
+function renderProgress(){
+  const total = INIT.reduce((a,i)=>a+i.deliverables.length,0);
+  const done = INIT.reduce((a,i)=>a+doneCount(i),0);
+  $('#progText').textContent = `${done} of ${total} deliverables checked`;
+  $('#progBar').style.width = (done/total*100)+'%';
+}
+$('#filters').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if(!b) return; filter = b.dataset.f; renderFilters(); renderCards(); });
+renderFilters(); renderCards(); renderProgress();
+
+/* Gantt */
+(function(){
+  const phases = [['Define',1,4],['Build',5,10],['Launch',11,12],['Scale',13,16]];
+  let h = `<div class="g-phase" style="grid-column:1;border-left:0">Phase</div>`;
+  h += phases.map(([n,a,b])=>`<div class="g-phase" style="grid-column:${a+1}/${b+2}">Wk ${a}–${b}<b>${n}</b></div>`).join('');
+  h += `<div class="g-wk" style="grid-column:1"></div>`;
+  for (let w=1; w<=16; w++) h += `<div class="g-wk" style="grid-column:${w+1}">${w}</div>`;
+  INIT.forEach((it,r) => {
+    const row = r+3;
+    h += `<button class="g-label" type="button" style="grid-row:${row};grid-column:1;--pc:${pc(it)}" data-open="${it.id}"><span>${pad(it.id)}</span>${esc(it.short)}</button>`;
+    h += `<div class="g-cell" style="grid-row:${row};grid-column:2/18"></div>`;
+    h += `<button class="g-bar ${it.ongoing?'ongoing':''}" type="button" style="grid-row:${row};grid-column:${it.weeks[0]+1}/${it.weeks[1]+2};--pc:${pc(it)}" data-open="${it.id}" aria-label="${esc(it.title)}, weeks ${it.weeks[0]} to ${it.weeks[1]}${it.ongoing?' and ongoing':''}">${esc(it.short)}</button>`;
+  });
+  $('#gantt').innerHTML = h;
+  // Launch marker at the start of week 12
+  const g = $('#gantt'), m = document.createElement('div'); m.className = 'g-launch';
+  const place = () => { const cells = g.querySelectorAll('.g-wk'); const c = cells[12]; if (c) m.style.left = c.offsetLeft + 'px'; };
+  g.appendChild(m); place(); addEventListener('resize', place);
+})();
+
+/* Dependency map */
+const MAP_POS = {1:[0,0],7:[0,1],2:[1,0],3:[1,1],5:[2,0],4:[2,1],6:[3,0],8:[3,1]};
+const COLS = ['FOUNDATIONS','BUILD','ACTIVATE','AMPLIFY'];
+const BACK = [[5,7],[6,5]];
+let mapSel = null;
+function edgesOf(){ const e=[]; INIT.forEach(it=>it.depends.forEach(d=>{ if(!BACK.some(([a,b])=>a===d&&b===it.id)) e.push([d,it.id,false]); })); BACK.forEach(([a,b])=>e.push([a,b,true])); return e; }
+function renderMap(){
+  const W=900, colX=c=>40+c*220, rowY=r=>90+r*150, NW=180, NH=64;
+  const svg = $('#mapSvg');
+  let s = COLS.map((c,i)=>`<text class="col" x="${colX(i)}" y="40">${c}</text>`).join('');
+  const center = id => { const [c,r]=MAP_POS[id]; return [colX(c), rowY(r)]; };
+  edgesOf().forEach(([a,b,back])=>{
+    const [ax,ay]=center(a), [bx,by]=center(b);
+    let d;
+    if (back){
+      // loop above/below the nodes back to the source column
+      const yOff = ay < 150 && by < 150 ? -46 : NH+46;
+      const y1 = ay + (yOff<0?0:NH), y2 = by + (yOff<0?0:NH);
+      d = `M${ax+NW/2},${y1} C${ax+NW/2},${y1+yOff} ${bx+NW/2},${y2+yOff} ${bx+NW/2},${y2}`;
+    } else {
+      const x1=ax+NW, y1=ay+NH/2, x2=bx, y2=by+NH/2, mx=(x1+x2)/2;
+      d = `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2-6},${y2}`;
+    }
+    s += `<path class="edge ${back?'back':''}" data-a="${a}" data-b="${b}" d="${d}" marker-end="url(#arr)"/>`;
+  });
+  INIT.forEach(it=>{
+    const [x,y]=center(it.id);
+    s += `<g class="node" tabindex="0" role="button" aria-label="${esc(it.title)}" data-node="${it.id}" transform="translate(${x},${y})">
+      <rect width="${NW}" height="${NH}" rx="10"/>
+      <rect width="4" height="${NH-20}" x="0" y="10" rx="2" style="fill:${pc(it)};stroke:none"/>
+      <text class="n" x="16" y="26" style="fill:${pc(it)}">${pad(it.id)} · ${PILLARS[it.pillar].name.toUpperCase()}</text>
+      <text x="16" y="47">${esc(it.short)}</text></g>`;
+  });
+  svg.innerHTML = `<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker></defs>` + s;
+}
+function selectMap(id){
+  mapSel = id;
+  const svg = $('#mapSvg');
+  svg.querySelectorAll('.edge').forEach(e=>{
+    const on = id && (+e.dataset.a===id || +e.dataset.b===id);
+    e.classList.toggle('on', !!on); e.classList.toggle('off', !!id && !on);
+  });
+  const linked = new Set([id]);
+  if (id) svg.querySelectorAll('.edge.on').forEach(e=>{ linked.add(+e.dataset.a); linked.add(+e.dataset.b); });
+  svg.querySelectorAll('.node').forEach(n=>{ const nid=+n.dataset.node; n.classList.toggle('on', nid===id); n.classList.toggle('off', !!id && !linked.has(nid)); });
+  const info = $('#mapInfo');
+  if (!id){
+    info.innerHTML = `<span class="eyebrow">Reading the map</span><h3>Brand and proof come first</h3><p>Brand (01) and customer proof (07) feed almost everything else. Our own AIO work (05) closes the loop by becoming a case study, and PR (06) earns the citations that lift it.</p><p style="font-size:13px">Select any box to trace its links.</p>`;
+    return;
+  }
+  const it = byId(id);
+  const needs = [...new Set([...it.depends, ...BACK.filter(([a,b])=>b===id).map(([a])=>a)])];
+  const unlocks = [...new Set([...INIT.filter(o=>o.depends.includes(id)).map(o=>o.id), ...BACK.filter(([a])=>a===id).map(([,b])=>b)])];
+  info.innerHTML = `<span class="tag" style="color:${pc(it)}">${pad(id)} · ${PILLARS[it.pillar].name}</span><h3>${esc(it.title)}</h3>
+    <div><span class="eyebrow">Needs</span><div class="links" style="margin-top:8px">${needs.length?needs.map(linkChip).join(''):'<span class="none">Nothing. Start now.</span>'}</div></div>
+    <div><span class="eyebrow">Unlocks</span><div class="links" style="margin-top:8px">${unlocks.length?unlocks.map(linkChip).join(''):'<span class="none">End of the chain</span>'}</div></div>
+    <button class="mini" type="button" data-open="${id}" style="justify-self:start">Open details →</button>`;
+}
+renderMap(); selectMap(null);
+$('#mapSvg').addEventListener('click', e => { const n = e.target.closest('[data-node]'); selectMap(n && +n.dataset.node !== mapSel ? +n.dataset.node : null); });
+$('#mapSvg').addEventListener('keydown', e => { if ((e.key==='Enter'||e.key===' ') && e.target.closest('[data-node]')){ e.preventDefault(); const id=+e.target.closest('[data-node]').dataset.node; selectMap(id===mapSel?null:id); } });
+
+/* Implementation plan. id 0 = whole team / governance */
+const PHASES = [
+ {name:'Define', weeks:'Weeks 1–4', exit:['Brand signed off','Launch date fixed','Owner named for every initiative','2–3 priority industries chosen','AI-visibility baseline captured','At least 4 customers in the proof pipeline'],
+  rows:[
+   ['1',0,'Assign owners, set up the project board and meeting cadence, confirm budget envelope'],
+   ['1',1,'Kickoff; audit current brand; competitor positioning review; stakeholder interviews'],
+   ['1',7,'Shortlist 10–15 referenceable customers; draft results template (before/after AI visibility)'],
+   ['2',1,'Positioning statement and category narrative; messaging house draft; 2–3 logo directions'],
+   ['2',5,'Build the tracked prompt set: category and buyer questions by persona and industry'],
+   ['2',7,'Customer outreach; agree approval and legal process for naming customers'],
+   ['3',1,'Choose logo direction; color and type tokens; persona messaging (CMO, VP Digital, Head of SEO)'],
+   ['3',5,'Baseline audit across ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews'],
+   ['3',2,'Sitemap and IA; content inventory; CMS/stack decision; analytics and tracking plan'],
+   ['3',4,'ICP definition (titles, industries, company size); ABM account list'],
+   ['3–4',7,'First 3–4 customer interviews'],
+   ['4',1,'Style guide v1, boilerplate, exec bios. Brand sign-off and launch date fixed',true],
+   ['4',2,'Wireframes for key page templates'],
+   ['4',3,'Asset inventory; pick priority industries; master deck outline'],
+   ['4',5,'Entity audit (Wikidata, Crunchbase, G2, LinkedIn, directories) and fix list'],
+   ['4',6,'PR brief or agency selection; 12-month announcement calendar; media list'],
+   ['4',4,'Budget and channel split; tracking spec (Insight Tag, Meta Pixel + CAPI, UTMs, CRM)']
+  ]},
+ {name:'Build', weeks:'Weeks 5–10', exit:['Site on staging passes QA and mobile Core Web Vitals','Decks and one-pagers approved by sales','At least 2 case studies approved','Press releases final','Campaigns built with tracking verified'],
+  rows:[
+   ['5–6',2,'Visual design of homepage and templates in the new brand; copywriting starts'],
+   ['5–7',3,'Master product deck; one-pagers for AIO, GEO and AEO'],
+   ['5–8',7,'Write 2–3 case studies with quantified results; collect testimonials; set up review profiles'],
+   ['5–10',5,'Pillar content on AIO/GEO/AEO; apply entity fixes; third-party citation plan'],
+   ['5–10',3,'Flagship report: collect and analyze data (e.g. state of AI search visibility)'],
+   ['6–9',2,'Build homepage, enterprise and mid-market pages, service pages, industry pages, proof hub, landing page templates'],
+   ['6–8',6,'Draft launch, leadership and product releases; press kit; exec media prep'],
+   ['7–8',4,'Creative production with variants per segment; landing page copy'],
+   ['7–9',3,'Industry decks for priority verticals'],
+   ['8–10',7,'Customer approvals; thought leadership bylines drafted'],
+   ['8–10',8,'Speaker one-sheet; podcast pitching; webinar #1 planned; partner shortlist'],
+   ['9',2,'Schema (Organization, Service, FAQ), AI crawler access, llms.txt; analytics and CRM attribution'],
+   ['9–10',3,'Onboarding presentation; proposal and SOW templates; asset library'],
+   ['9–10',4,'Install and test tracking; build campaigns in draft; landing pages on staging'],
+   ['9–10',6,'Embargoed pitching to tier-1 and trade media'],
+   ['10',2,'QA, mobile Core Web Vitals, redirect map, stakeholder review on staging',true]
+  ]},
+ {name:'Launch', weeks:'Weeks 11–12', exit:['Site live with tracking verified','Announcement published','Campaigns spending','First-week dashboard in place'],
+  rows:[
+   ['11',2,'Go live; 301 redirects; monitoring; submit to Search Console and Bing'],
+   ['11',3,'Sales enablement training on the new story and assets'],
+   ['11',4,'End-to-end conversion test: ad → landing page → CRM'],
+   ['11',1,'Update every profile: LinkedIn, G2, Crunchbase, email signatures, templates'],
+   ['12',6,'Launch announcement crosses the wire; newsroom live; exec posts',true],
+   ['12',4,'Campaigns live on LinkedIn and Facebook'],
+   ['12',7,'Case studies and testimonials live on the site'],
+   ['12',0,'Customer and prospect email; social launch; internal all-hands']
+  ]},
+ {name:'Scale', weeks:'Weeks 13–16, then ongoing', exit:['Measurable AI share-of-voice lift vs. baseline','Pipeline attributed by channel','Repeatable monthly content, PR and proof cadence'],
+  rows:[
+   ['Weekly',4,'Optimize bids, audiences and creative; move budget to winning segments; refresh creative every 3–4 weeks'],
+   ['Weekly',2,'Conversion tests on landing pages and forms'],
+   ['14',3,'Publish the flagship report and pitch it as news (with PR)'],
+   ['14',8,'Webinar #1; podcast appearances begin'],
+   ['16',5,'First monthly AI share-of-voice report vs. baseline',true],
+   ['Monthly',5,'2–4 answer-ready content pieces; citation outreach'],
+   ['Monthly',6,'One follow-on announcement: leadership, product or innovation'],
+   ['Monthly',7,'One new case study or testimonial'],
+   ['Quarterly',8,'Conference submissions; 1–2 partnership agreements; guest article pipeline']
+  ]}
+];
+const OWNERS = {1:['Brand / creative lead','CEO'],2:['Web lead','Head of Marketing'],3:['Product marketing lead','Sales lead'],4:['Paid media manager','Head of Marketing'],5:['SEO / AIO lead','Head of Marketing'],6:['PR / comms lead or agency','CEO'],7:['Customer marketing lead','Head of Marketing'],8:['Head of Marketing','CEO']};
+const RISKS = [
+ ['Brand sign-off slips','Moves launch day','Fixed decision date in week 4, only 2–3 directions, one approver.'],
+ ['Customer approvals are slow','Thin proof at launch','Start in week 1; allow anonymized studies; use our own AIO results as a case study.'],
+ ['Web dev capacity','Site not ready by week 11','Lock scope in week 4; launch core pages first and add industry pages after.'],
+ ['Tracking gaps','Can\'t prove ROI','Tracking spec in week 4 and an end-to-end test in week 11 before any spend.'],
+ ['Paid spend underperforms','High cost per SQL','Small test budgets per segment; scale only the winners.'],
+ ['AI visibility moves slowly','Weak early north-star story','Report leading indicators monthly: citations, entity fixes, mentions.']
+];
+let phaseIdx = 0, planInit = 0;
+function renderPlan(){
+  $('#phaseTabs').innerHTML = PHASES.map((p,i)=>`<button class="tab" role="tab" type="button" aria-selected="${i===phaseIdx}" data-ph="${i}">${p.name}<small>${p.weeks}</small></button>`).join('');
+  const P = PHASES[phaseIdx];
+  const rows = P.rows.filter(r => !planInit || r[1]===planInit || r[1]===0);
+  const who = id => { if (!id) return `<span class="pill static"><span class="dot" style="background:var(--ink)"></span>Whole team</span>`; const it=byId(id); return `<button type="button" class="pill" data-open="${id}"><span class="dot" style="background:${pc(it)}"></span>${pad(id)} ${esc(it.short)}</button>`; };
+  $('#planBody').innerHTML = rows.length ? rows.map(([w,id,t,ms])=>`<tr class="${ms?'milestone':''}"><td>${/^\d/.test(w)?'Wk '+w:w}</td><td>${who(id)}</td><td>${ms?'◆ ':''}${esc(t)}</td></tr>`).join('')
+    : `<tr><td colspan="3" style="color:var(--muted);font-family:var(--f-body);white-space:normal">No tasks for this initiative in the ${P.name} phase.</td></tr>`;
+  $('#planExit').innerHTML = `<span class="eyebrow">${P.weeks}</span><h3>Done when</h3><ul>${P.exit.map(e=>`<li>${esc(e)}</li>`).join('')}</ul><p style="color:var(--muted);font-size:13px">◆ marks the milestone that closes the phase.</p>`;
+}
+$('#planFilter').innerHTML += INIT.map(i=>`<option value="${i.id}">${pad(i.id)} ${esc(i.short)}</option>`).join('');
+$('#planFilter').addEventListener('change', e => { planInit = +e.target.value; renderPlan(); });
+$('#phaseTabs').addEventListener('click', e => { const b = e.target.closest('[data-ph]'); if (b){ phaseIdx = +b.dataset.ph; renderPlan(); } });
+$('#phaseTabs').addEventListener('keydown', e => { if (e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return; phaseIdx=(phaseIdx+(e.key==='ArrowRight'?1:3))%4; renderPlan(); $('#phaseTabs [aria-selected="true"]').focus(); });
+renderPlan();
+$('#ownerBody').innerHTML = INIT.map(it=>`<tr><td><button type="button" class="pill" data-open="${it.id}"><span class="dot" style="background:${pc(it)}"></span>${pad(it.id)} ${esc(it.short)}</button></td><td style="font-family:var(--f-body);color:var(--ink);white-space:normal">${OWNERS[it.id][0]}</td><td>${OWNERS[it.id][1]}</td></tr>`).join('');
+$('#risks').innerHTML = RISKS.map(([r,i,m])=>`<div class="risk"><b>${esc(r)}</b><span class="imp">Impact: ${esc(i)}</span><p>${esc(m)}</p></div>`).join('');
+
+/* Scorecard + questions */
+$('#score').innerHTML = METRICS.map(m=>`<div class="metric"><span class="k">${m.k}</span><h3>${esc(m.t)}</h3><p>${esc(m.d)}</p><div class="links">${m.f.map(linkChip).join('')}</div></div>`).join('');
+$('#qs').innerHTML = QUESTIONS.map(q=>`<div class="qa"><h3>${esc(q.q)}</h3><p>${esc(q.d)}</p><div class="links" style="margin-top:4px">${q.r.length>4?'<span class="none">All eight initiatives</span>':q.r.map(linkChip).join('')}</div></div>`).join('');
+
+/* Drawer */
+let current = null, lastFocus = null;
+function openDrawer(id){
+  const it = byId(id); if (!it) return;
+  if (!current) lastFocus = document.activeElement;
+  current = id;
+  const d = $('#drawer');
+  d.style.setProperty('--pc', pc(it));
+  $('#dTag').textContent = `${pad(id)} · ${PILLARS[it.pillar].name} · Weeks ${it.weeks[0]}–${it.weeks[1]}${it.ongoing?' and ongoing':''}`;
+  $('#dTag').style.color = pc(it);
+  $('#dTitle').textContent = it.title;
+  $('#dScope').textContent = it.scope;
+  const unlocks = INIT.filter(o=>o.depends.includes(id)).map(o=>o.id);
+  $('#dBody').innerHTML = `
+    <div class="d-sec"><h4>Why it matters</h4><p>${esc(it.why)}</p></div>
+    <div class="d-sec"><h4>Deliverables · ${doneCount(it)}/${it.deliverables.length} checked in this browser</h4>
+      <ul class="checks">${it.deliverables.map((x,i)=>`<li><label><input type="checkbox" id="ck-${id}-${i}" data-ck="${id}-${i}" ${ck(id,i)?'checked':''}><span>${esc(x)}</span></label></li>`).join('')}</ul></div>
+    <div class="d-sec"><h4>Proposed KPIs</h4><ul class="kpis">${it.kpis.map(k=>`<li>${esc(k)}</li>`).join('')}</ul></div>
+    <div class="d-sec"><h4>Needs</h4><div class="links">${it.depends.length?it.depends.map(linkChip).join(''):'<span class="none">No dependencies. Can start now.</span>'}</div></div>
+    <div class="d-sec"><h4>Unlocks</h4><div class="links">${unlocks.length?unlocks.map(linkChip).join(''):'<span class="none">Nothing waits on this one</span>'}</div></div>`;
+  $('#dBody').scrollTop = 0;
+  d.classList.add('show'); d.setAttribute('aria-hidden','false'); $('#scrim').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  $('#dClose').focus();
+  try { history.replaceState(null,'','#i'+id); } catch(e){}
+}
+function closeDrawer(){
+  if (!current) return;
+  current = null;
+  const d = $('#drawer'); d.classList.remove('show'); d.setAttribute('aria-hidden','true'); $('#scrim').classList.remove('show');
+  document.body.style.overflow = '';
+  try { history.replaceState(null,'',location.pathname + location.search); } catch(e){}
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.addEventListener('click', e => {
+  const o = e.target.closest('[data-open]');
+  if (o){ e.preventDefault(); openDrawer(+o.dataset.open); }
+});
+$('#dBody').addEventListener('change', e => {
+  const c = e.target.closest('[data-ck]'); if (!c) return;
+  checks[c.dataset.ck] = c.checked; saveChecks();
+  const it = byId(current);
+  $('#dBody').querySelector('.d-sec:nth-child(2) h4').textContent = `Deliverables · ${doneCount(it)}/${it.deliverables.length} checked in this browser`;
+  renderCards(); renderProgress();
+});
+$('#dClose').addEventListener('click', closeDrawer);
+$('#scrim').addEventListener('click', closeDrawer);
+$('#dPrev').addEventListener('click', ()=>openDrawer(current===1?8:current-1));
+$('#dNext').addEventListener('click', ()=>openDrawer(current===8?1:current+1));
+document.addEventListener('keydown', e => {
+  if (!current) return;
+  if (e.key === 'Escape') closeDrawer();
+  if (e.key === 'Tab'){
+    const f = [...$('#drawer').querySelectorAll('button,input')].filter(x=>x.offsetParent!==null);
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+  }
+});
+const m = /^#i([1-8])$/.exec(location.hash);
+if (m) openDrawer(+m[1]);
+</script>
+</body>
+</html>
