@@ -53,6 +53,27 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav a:hover{color:var(--ink);background:var(--sunk)}
 
 /* Hero */
+/* Black-and-white tech imagery, drawn in canvas */
+#bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(0,0,0,.25),#000 80%);mask-image:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(0,0,0,.25),#000 80%)}
+main,footer{position:relative;z-index:1}
+.hero{position:relative;overflow:hidden}
+.hero>.wrap{position:relative;z-index:1}
+#netfx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.35),#000 55%);mask-image:linear-gradient(90deg,rgba(0,0,0,.35),#000 55%)}
+#brief{position:relative;overflow:hidden}
+#brief>.wrap{position:relative;z-index:1}
+#globefx{position:absolute;z-index:0;pointer-events:none;width:min(620px,90vw);height:min(620px,90vw);left:-120px;top:50%;transform:translateY(-50%);opacity:.55}
+.section:nth-of-type(odd){background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.2px);background-size:22px 22px}
+/* AI-generated black-and-white photography (assets/) */
+.hero{background:linear-gradient(90deg,#000 22%,rgba(0,0,0,.6) 55%,rgba(0,0,0,.25)),url(assets/hero.jpg) right center/cover no-repeat}
+#brief{background:linear-gradient(270deg,#000 28%,rgba(0,0,0,.5) 65%,rgba(0,0,0,.35)),url(assets/globe.jpg) 30% center/cover no-repeat}
+#roadmap{background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.88) 420px,#000 640px),url(assets/circuit.jpg) center top/100% auto no-repeat}
+#scorecard{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.9) 70%),url(assets/server.jpg) center/cover no-repeat}
+@media (max-width:960px){
+  .hero{background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.88)),url(assets/hero.jpg) center/cover no-repeat}
+  #brief{background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),url(assets/globe.jpg) 70% top/auto 480px no-repeat}
+  #roadmap{background:linear-gradient(180deg,rgba(0,0,0,.5),#000 380px),url(assets/circuit.jpg) center top/auto 420px no-repeat}
+}
+.hero h1,.hero .lede,.section-head,.quote{text-shadow:0 0 18px #000,0 0 4px #000}
 .hero{padding-block:56px 72px}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
 .hero h1{font-size:clamp(38px,6vw,68px);font-weight:800;margin:16px 0 20px}
@@ -213,7 +234,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .scrim{position:fixed;inset:0;background:rgba(5,8,15,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .scrim.show{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);z-index:50;background:var(--surface);border-left:1px solid var(--line);box-shadow:var(--shadow);transform:translateX(102%);transition:transform .25s ease;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
-.drawer.show{transform:none}
+.drawer{visibility:hidden;transition:transform .25s ease,visibility 0s linear .25s}
+.drawer.show{transform:none;visibility:visible;transition:transform .25s ease}
+.hero h1 em{text-shadow:none;filter:drop-shadow(0 0 14px rgba(0,0,0,.9))}
 .d-head{padding:20px 24px 16px;border-bottom:1px solid var(--line);display:grid;gap:10px}
 .d-head-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .d-head h2{font-size:28px;font-weight:700}
@@ -257,6 +280,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </head>
 <body>
 
+<canvas id="bgfx" aria-hidden="true"></canvas>
 <header class="topbar">
   <div class="wrap">
     <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">AI</span>Lead<b>AIO</b></a>
@@ -274,6 +298,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <main id="top">
   <section class="hero">
+    <canvas id="netfx" aria-hidden="true"></canvas>
     <div class="wrap">
       <div>
         <span class="eyebrow">Rebrand &amp; launch · Mid-market and enterprise</span>
@@ -855,6 +880,116 @@ document.addEventListener('keydown', e => {
 });
 const m = /^#i([1-8])$/.exec(location.hash);
 if (m) openDrawer(+m[1]);
+/* ---------- Background tech imagery (black and white) ---------- */
+(function(){
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const still = reduceMotion;
+  function fit(c){ const r = c.getBoundingClientRect(); c.width = Math.max(1, r.width*DPR); c.height = Math.max(1, r.height*DPR); const x = c.getContext('2d'); x.setTransform(DPR,0,0,DPR,0,0); return [x, r.width, r.height]; }
+  let seed = 7; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+
+  // 1. Circuit board traces across the whole page
+  const bg = document.getElementById('bgfx');
+  function drawCircuit(){
+    seed = 7;
+    const [x,w,h] = fit(bg), G = 24, cols = Math.ceil(w/G)+1, rows = Math.ceil(h/G)+1;
+    const used = new Set(), key = (a,b)=>a+','+b;
+    x.clearRect(0,0,w,h); x.lineCap='round'; x.lineJoin='round';
+    const dirs = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]];
+    const traces = Math.round(cols*rows/9);
+    for (let t=0; t<traces; t++){
+      let cx = Math.floor(rnd()*cols), cy = Math.floor(rnd()*rows);
+      if (used.has(key(cx,cy))) continue;
+      let d = Math.floor(rnd()*4)*2, len = 4 + Math.floor(rnd()*16), pts = [[cx,cy]]; used.add(key(cx,cy));
+      for (let s=0; s<len; s++){
+        if (rnd() < .22) d = (d + (rnd()<.5?1:7)) % 8;
+        const nx = cx+dirs[d][0], ny = cy+dirs[d][1];
+        if (nx<0||ny<0||nx>=cols||ny>=rows||used.has(key(nx,ny))) break;
+        cx=nx; cy=ny; used.add(key(cx,cy)); pts.push([cx,cy]);
+      }
+      if (pts.length < 3) continue;
+      const a = .05 + rnd()*.09;
+      x.strokeStyle = `rgba(255,255,255,${a})`; x.lineWidth = rnd()<.15 ? 2 : 1;
+      x.beginPath(); pts.forEach(([px,py],i)=> i? x.lineTo(px*G,py*G) : x.moveTo(px*G,py*G)); x.stroke();
+      [pts[0], pts[pts.length-1]].forEach(([px,py],i)=>{
+        x.beginPath(); x.arc(px*G,py*G, i?3:2.2, 0, Math.PI*2);
+        if (i){ x.fillStyle='#000'; x.fill(); x.strokeStyle=`rgba(255,255,255,${a+.06})`; x.stroke(); }
+        else { x.fillStyle=`rgba(255,255,255,${a+.05})`; x.fill(); }
+      });
+    }
+    // a few chips with pins
+    const chips = Math.max(3, Math.round(w*h/260000));
+    for (let c=0; c<chips; c++){
+      const cw = (3+Math.floor(rnd()*4))*G, ch = (2+Math.floor(rnd()*3))*G;
+      const px = Math.floor(rnd()*(cols-6))*G, py = Math.floor(rnd()*(rows-5))*G;
+      x.fillStyle='#000'; x.fillRect(px,py,cw,ch);
+      x.strokeStyle='rgba(255,255,255,.14)'; x.lineWidth=1; x.strokeRect(px+.5,py+.5,cw,ch);
+      x.strokeStyle='rgba(255,255,255,.1)';
+      for (let i=8; i<cw-4; i+=8){ x.beginPath(); x.moveTo(px+i,py); x.lineTo(px+i,py-6); x.moveTo(px+i,py+ch); x.lineTo(px+i,py+ch+6); x.stroke(); }
+      x.fillStyle='rgba(255,255,255,.12)'; x.font='500 9px "IBM Plex Mono", monospace';
+      x.fillText(['AIO-01','GEO-X','AEO-7','LLM-4','NLP-2'][c%5], px+8, py+16);
+    }
+  }
+  drawCircuit();
+  let rt; addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ drawCircuit(); netResize(); globeResize(); }, 150); });
+
+  // 2. Neural network constellation behind the hero
+  const net = document.getElementById('netfx');
+  let nx, nw, nh, nodes = [];
+  function netResize(){
+    [nx,nw,nh] = fit(net);
+    const n = Math.round(Math.min(110, nw*nh/9000));
+    nodes = Array.from({length:n}, ()=>({x:Math.random()*nw, y:Math.random()*nh, vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25, r:Math.random()<.12?2.6:1.4, p:Math.random()*6.28}));
+    if (still) netFrame(0);
+  }
+  function netFrame(t){
+    nx.clearRect(0,0,nw,nh);
+    const R = 130;
+    for (let i=0;i<nodes.length;i++){
+      const a = nodes[i];
+      if (!still){ a.x+=a.vx; a.y+=a.vy; if(a.x<0||a.x>nw) a.vx*=-1; if(a.y<0||a.y>nh) a.vy*=-1; }
+      for (let j=i+1;j<nodes.length;j++){
+        const b = nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+        if (d<R){ nx.strokeStyle=`rgba(255,255,255,${(1-d/R)*.22})`; nx.lineWidth=1; nx.beginPath(); nx.moveTo(a.x,a.y); nx.lineTo(b.x,b.y); nx.stroke(); }
+      }
+    }
+    nodes.forEach(a=>{
+      const glow = a.r>2 ? .55+.35*Math.sin(t/700+a.p) : .5;
+      nx.fillStyle=`rgba(255,255,255,${glow})`; nx.beginPath(); nx.arc(a.x,a.y,a.r,0,6.283); nx.fill();
+      if (a.r>2){ nx.strokeStyle=`rgba(255,255,255,${glow*.3})`; nx.beginPath(); nx.arc(a.x,a.y,a.r+5,0,6.283); nx.stroke(); }
+    });
+  }
+
+  // 3. Rotating wireframe globe behind the brief
+  const globe = document.getElementById('globefx');
+  let gx, gw, gh;
+  function globeResize(){ if (!globe) return; [gx,gw,gh] = fit(globe); if (still) globeFrame(0); }
+  function globeFrame(t){
+    gx.clearRect(0,0,gw,gh);
+    const cx=gw/2, cy=gh/2, R=gw*.42, rot=t/9000, tilt=.35;
+    const proj = (lat,lon)=>{ let X=Math.cos(lat)*Math.sin(lon+rot), Y=Math.sin(lat), Z=Math.cos(lat)*Math.cos(lon+rot);
+      const y2=Y*Math.cos(tilt)-Z*Math.sin(tilt), z2=Y*Math.sin(tilt)+Z*Math.cos(tilt); return [cx+X*R, cy-y2*R, z2]; };
+    const seg = (pts)=>{ for (let i=1;i<pts.length;i++){ const [x1,y1,z1]=pts[i-1],[x2,y2,z2]=pts[i]; const z=(z1+z2)/2;
+      gx.strokeStyle=`rgba(255,255,255,${z>0?.30:.07})`; gx.beginPath(); gx.moveTo(x1,y1); gx.lineTo(x2,y2); gx.stroke(); } };
+    gx.lineWidth=1;
+    for (let la=-75; la<=75; la+=15){ const p=[]; for(let lo=0;lo<=360;lo+=6) p.push(proj(la*Math.PI/180, lo*Math.PI/180)); seg(p); }
+    for (let lo=0; lo<180; lo+=15){ const p=[]; for(let la=0;la<=360;la+=6) p.push(proj(la*Math.PI/180, lo*Math.PI/180)); seg(p); }
+    gx.strokeStyle='rgba(255,255,255,.18)'; gx.beginPath(); gx.arc(cx,cy,R,0,6.283); gx.stroke();
+    // orbit ring with satellites
+    gx.strokeStyle='rgba(255,255,255,.12)'; gx.beginPath(); gx.ellipse(cx,cy,R*1.18,R*.32,-.3,0,6.283); gx.stroke();
+    for (let k=0;k<3;k++){ const a=t/2500+k*2.09; const sx=cx+Math.cos(a)*R*1.18*Math.cos(-.3)-Math.sin(a)*R*.32*Math.sin(-.3), sy=cy+Math.cos(a)*R*1.18*Math.sin(-.3)+Math.sin(a)*R*.32*Math.cos(-.3);
+      gx.fillStyle='rgba(255,255,255,.8)'; gx.beginPath(); gx.arc(sx,sy,2.5,0,6.283); gx.fill(); }
+  }
+
+  netResize(); globeResize();
+  if (!still){
+    const vis = {net:true, globe:true};
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(es=>es.forEach(e=>{ vis[e.target===net?'net':'globe'] = e.isIntersecting; })).observe(net);
+      if (globe) new IntersectionObserver(es=>es.forEach(e=>{ vis.globe = e.isIntersecting; })).observe(globe);
+    }
+    (function loop(t){ if (!document.hidden){ if (vis.net) netFrame(t); if (vis.globe && globe) globeFrame(t); } requestAnimationFrame(loop); })(0);
+  }
+})();
 </script>
 </body>
 </html>
