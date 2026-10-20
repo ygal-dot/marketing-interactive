@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LeadAIO Media Samples</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sample brand, web, sales, ad, PR and visibility assets for the LeadAIO launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+.media-hero{position:relative;padding-block:64px 40px;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.85) 75%,#000),url(assets/circuit.jpg) center/cover no-repeat;border-bottom:1px solid var(--line)}
+.media-hero h1{font-size:clamp(36px,5.5vw,60px);font-weight:800;margin:14px 0 14px}
+.media-hero h1 em{font-style:normal;color:var(--accent)}
+.media-hero p{color:var(--muted);font-size:17px;max-width:62ch;text-shadow:0 0 12px #000}
+.back{display:inline-flex;gap:6px;align-items:center;margin-top:22px;font-size:14px;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:rgba(0,0,0,.5)}
+.back:hover{border-color:var(--accent);color:var(--accent)}
+#media{border-top:0}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html">Lead<b>AIO</b></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html#brief">The brief</a>
+      <a href="index.html#initiatives">Initiatives</a>
+      <a href="index.html#roadmap">Roadmap</a>
+      <a href="index.html#plan">Plan</a>
+      <a href="index.html#map">How they connect</a>
+      <a href="index.html#scorecard">Scorecard</a>
+      <a href="index.html#questions">Open questions</a>
+      <a href="media.html" aria-current="page">Media</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="media-hero">
+    <div class="wrap">
+      <span class="eyebrow">Media · sample assets</span>
+      <h1>Samples we can <em>produce today</em></h1>
+      <p>First drafts of real deliverables from the launch plan. The images were generated with the OpenAI image API, and the copy and code are written ready to edit. Use them to react to direction before final production.</p>
+      <a class="back" href="index.html">← Back to the launch plan</a>
+    </div>
+  </section>
+
+  <section class="section" id="media">
+    <div class="wrap">
+      <div class="toolbar">
+        <div class="tabs" role="tablist" aria-label="Asset type" id="mediaKinds"></div>
+        <span class="progress" id="mediaCount"></span>
+      </div>
+      <div id="mediaFilters" class="m-filters" role="group" aria-label="Filter by initiative"></div>
+      <div id="mediaImgWrap"><h3 class="sub-h">Images</h3><div class="m-grid" id="mediaImgs"></div></div>
+      <div id="mediaTxtWrap" style="margin-top:40px"><h3 class="sub-h">Copy and code</h3><div class="m-docs" id="mediaTxts"></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>LeadAIO · AIO, GEO and AEO for mid-market and enterprise brands</span>
+    <span>Media samples · working drafts for the team</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Asset preview" aria-hidden="true">
+  <button class="x v-x" id="vClose" aria-label="Close">×</button>
+  <div class="v-body" id="vBody"></div>
+</div>
+
+<script>
+/* Always open at the top unless a section link was used */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e) {}
+if (!location.hash) { scrollTo(0,0); addEventListener('load', ()=>scrollTo(0,0)); }
+
+const PILLAR_COLOR = {foundation:'var(--p-foundation)', platform:'var(--p-platform)', proof:'var(--p-proof)', reach:'var(--p-reach)'};
+const INIT = [
+ {id:1, short:'Brand', pillar:'foundation'}, {id:2, short:'Website', pillar:'platform'},
+ {id:3, short:'Sales assets', pillar:'proof'}, {id:4, short:'PPC', pillar:'reach'},
+ {id:5, short:'Our own AIO', pillar:'platform'}, {id:6, short:'PR', pillar:'reach'},
+ {id:7, short:'Customer proof', pillar:'proof'}, {id:8, short:'Visibility', pillar:'reach'}
+];
+const $ = s => document.querySelector(s);
+const byId = id => INIT.find(i => i.id === id);
+const pad = n => String(n).padStart(2,'0');
+const pc = i => PILLAR_COLOR[i.pillar];
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+/* ---------- Media: generated sample assets ---------- */
+const MEDIA_IMAGES = [
+ {f:'logo-concepts', t:'Logo concepts and palette', i:1, fmt:'Brand board · 3:2', d:'Three wordmark directions (clean, answer-bubble, monogram) with the black, white and bold accent palette.'},
+ {f:'launch-graphic', t:'Launch announcement graphic', i:6, fmt:'Social · 3:2', d:'"Introducing LeadAIO" for launch day on LinkedIn, the newsroom and email headers.'},
+ {f:'website-mockup', t:'Homepage concept', i:2, fmt:'Mockup · 3:2', d:'Homepage hero direction: "Make your brand the answer AI gives." with the audit offer as the main call to action.'},
+ {f:'deck-cover', t:'Product deck cover', i:3, fmt:'Slide · 16:9', d:'Title slide for the master product deck, "AI Optimization for the Enterprise".'},
+ {f:'one-pager', t:'Service one-pager', i:3, fmt:'Print · portrait', d:'"AIO, GEO and AEO in one program" structured as Measure, Optimize, Prove.'},
+ {f:'report-cover', t:'Flagship report cover', i:3, fmt:'Report · portrait', d:'"The State of AI Search Visibility", the research report that doubles as a PR hook.'},
+ {f:'linkedin-ad-1', t:'LinkedIn ad: competitors', i:4, fmt:'Ad · 1:1', d:'Pain-led creative: "Is AI recommending your competitors?" with the audit CTA.'},
+ {f:'linkedin-ad-2', t:'LinkedIn ad: be the answer', i:4, fmt:'Ad · 1:1', d:'Brand-led creative showing an AI answer card that cites LeadAIO.'},
+ {f:'facebook-ad', t:'Facebook feed ad', i:4, fmt:'Ad · 4:5 portrait', d:'"Search changed. Has your brand?" introducing AIO, GEO and AEO with a demo CTA.'},
+ {f:'webinar', t:'Webinar promo banner', i:8, fmt:'Banner · 3:2', d:'"Winning the AI Answer" webinar for registration pages, email and social.'}
+];
+
+const MEDIA_TEXT = [
+ {t:'Messaging house', i:1, kind:'Brand copy', body:
+`POSITIONING STATEMENT
+For marketing leaders at mid-market and enterprise companies, LeadAIO is the AI Optimization (AIO) partner that makes your brand visible, accurate and recommended wherever AI answers buyer questions. Unlike traditional SEO agencies, we measure and improve how ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews describe and cite your brand.
+
+TAGLINE OPTIONS
+1. Be the answer.
+2. Make your brand the answer AI gives.
+3. Found. Cited. Recommended.
+
+MESSAGE PILLARS
+1. Measure: See exactly how AI platforms describe you, your competitors and your category today.
+2. Optimize: Fix the entity data, content and citations AI models rely on (AIO, GEO, AEO).
+3. Prove: Track AI share of voice and tie it to pipeline, month after month.
+
+PERSONA HOOKS
+CMO: "Your buyers ask AI before they ask sales. Make sure it recommends you."
+VP Digital: "One program for search engines and answer engines."
+Head of SEO/Content: "Turn your content into the source AI models cite."`},
+ {t:'Boilerplate and exec bio template', i:1, kind:'Brand copy', body:
+`COMPANY BOILERPLATE (about 60 words)
+LeadAIO is an AI Optimization (AIO) company that helps mid-market and enterprise brands get found, cited and recommended by AI platforms including ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews. Its services span AI Optimization, Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO), backed by measurement of AI share of voice. Learn more at leadaio.com.
+
+EXECUTIVE BIO TEMPLATE (about 80 words)
+[Full name] is [title] at LeadAIO, where [he/she/they] leads [area of responsibility]. [First name] has [number] years of experience in [search, digital marketing, data, etc.], including [notable previous role or company]. [He/She/They] advises enterprise marketing teams on how AI platforms choose which brands to recommend, and speaks on [topic]. [First name] is based in [city].
+
+SHORT BIO (for speaker cards)
+[Full name], [title], LeadAIO. Helps enterprise brands become the answer AI gives.`},
+ {t:'Homepage hero copy', i:2, kind:'Website copy', body:
+`EYEBROW
+AI Optimization for enterprise brands
+
+HEADLINE
+Make your brand the answer AI gives.
+
+SUBHEAD
+Buyers now ask ChatGPT, Gemini and Perplexity before they ever visit your site. LeadAIO measures how AI describes your brand and optimizes what it says, so you get found, cited and recommended.
+
+PRIMARY CTA
+Get your AI visibility audit
+
+SECONDARY CTA
+See how it works
+
+PROOF STRIP
+Trusted by marketing teams at [logo] [logo] [logo] [logo]
+
+THREE-UP
+Measure: AI share of voice across every major platform.
+Optimize: AIO, GEO and AEO in one program.
+Prove: Monthly reporting tied to pipeline.`},
+ {t:'llms.txt for leadaio.com', i:5, kind:'AIO technical', body:
+`# LeadAIO
+
+> LeadAIO is an AI Optimization (AIO) company. We help mid-market and enterprise brands get found, cited and recommended by AI platforms including ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews.
+
+## Services
+- [AI Optimization (AIO)](https://leadaio.com/aio): Program to improve brand visibility and accuracy across AI platforms
+- [Generative Engine Optimization (GEO)](https://leadaio.com/geo): Getting cited inside AI-generated answers
+- [Answer Engine Optimization (AEO)](https://leadaio.com/aeo): Winning direct answers, AI Overviews and featured snippets
+- [AI Visibility Audit](https://leadaio.com/audit): Baseline of how AI platforms describe your brand
+
+## Resources
+- [What is AIO? The definitive guide](https://leadaio.com/guides/what-is-aio)
+- [AIO vs GEO vs AEO](https://leadaio.com/guides/aio-geo-aeo)
+- [Case studies](https://leadaio.com/customers)
+
+## Company
+- [About LeadAIO](https://leadaio.com/about)
+- [Newsroom](https://leadaio.com/news)
+- [Contact](https://leadaio.com/contact)`},
+ {t:'Organization schema (JSON-LD)', i:2, kind:'AIO technical', body:
+`<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LeadAIO",
+  "url": "https://leadaio.com",
+  "logo": "https://leadaio.com/logo.png",
+  "description": "LeadAIO is an AI Optimization (AIO) company helping mid-market and enterprise brands get found, cited and recommended by AI platforms.",
+  "knowsAbout": ["AI Optimization", "Generative Engine Optimization", "Answer Engine Optimization", "AI search visibility"],
+  "sameAs": [
+    "https://www.linkedin.com/company/[leadaio]",
+    "https://www.crunchbase.com/organization/[leadaio]",
+    "https://www.g2.com/products/[leadaio]"
+  ],
+  "makesOffer": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI Optimization (AIO)"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Generative Engine Optimization (GEO)"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Answer Engine Optimization (AEO)"}}
+  ]
+}
+<\/script>`},
+ {t:'LinkedIn ad copy set', i:4, kind:'Paid social', body:
+`AUDIENCE
+Titles: CMO, VP Marketing, VP Digital, Head of SEO, Head of Content
+Company size: 500+ employees | Industries: [priority verticals]
+
+VARIANT A: PAIN
+Intro: Your buyers are asking AI which vendor to choose. Do you know what it tells them?
+Headline: Is AI recommending your competitors?
+CTA: Get your AI visibility audit
+
+VARIANT B: ASPIRATION
+Intro: Search changed. ChatGPT, Gemini and Perplexity now shape enterprise shortlists. LeadAIO makes your brand the answer they give.
+Headline: Be the answer.
+CTA: Learn more
+
+VARIANT C: EDUCATION
+Intro: AIO, GEO and AEO explained in 5 minutes, plus a checklist to see where your brand stands.
+Headline: The enterprise guide to AI Optimization
+CTA: Download
+
+TEST PLAN
+Weeks 1-2: A vs B vs C at equal budget per segment. Week 3: move 70% to the winner, test two new hooks.`},
+ {t:'Tracked AI prompt set (starter)', i:5, kind:'AIO measurement', body:
+`Run these monthly on ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews. Record: mentioned (y/n), position, cited URL, sentiment.
+
+CATEGORY
+1. What is AI Optimization (AIO)?
+2. What is the difference between AIO, GEO and AEO?
+3. Who are the leading AI Optimization companies?
+4. Best GEO agencies for enterprise brands
+5. Best AEO services for B2B companies
+
+BUYER INTENT
+6. How do I get my brand recommended by ChatGPT?
+7. How can my company appear in Google AI Overviews?
+8. How do I measure my brand's visibility in AI search?
+9. Should we hire an SEO agency or an AI Optimization company?
+10. What does an AI visibility audit include?
+
+COMPARISON
+11. LeadAIO vs [competitor]
+12. Alternatives to [competitor] for AI search optimization
+13. Is LeadAIO a good AI Optimization company?
+
+INDUSTRY (repeat per priority vertical)
+14. How should [industry] brands optimize for AI search?
+15. Which companies help [industry] brands get cited by AI?`},
+ {t:'Launch press release', i:6, kind:'Press release', body:
+`FOR IMMEDIATE RELEASE
+
+LeadAIO Launches to Help Enterprise Brands Become the Answer AI Gives
+
+New brand and platform focus on AI Optimization (AIO), Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) for mid-market and enterprise companies
+
+[CITY], [DATE] — LeadAIO today announced its launch as an AI Optimization company built for mid-market and enterprise brands. As buyers increasingly turn to ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews for research and recommendations, LeadAIO helps companies measure and improve how AI platforms describe, cite and recommend them.
+
+"[Quote from CEO on why AI answers now shape enterprise buying decisions and why LeadAIO exists]," said [Name], [Title] of LeadAIO.
+
+LeadAIO's program combines three disciplines:
+• AI Optimization (AIO): improving brand visibility and accuracy across AI platforms
+• Generative Engine Optimization (GEO): earning citations inside AI-generated answers
+• Answer Engine Optimization (AEO): winning direct answers and AI Overviews
+
+[Optional: customer quote with a measured result, pending approval.]
+
+Companies can request an AI visibility audit at leadaio.com/audit.
+
+About LeadAIO
+[Boilerplate]
+
+Media contact
+[Name] · [email] · [phone]`},
+ {t:'Case study template', i:7, kind:'Customer proof', body:
+`TITLE
+How [Customer] became the answer AI gives for [category/query]
+
+AT A GLANCE
+Customer: [name] · Industry: [industry] · Size: [employees/revenue band]
+Services: [AIO / GEO / AEO]
+Headline result: [metric, e.g. AI share of voice from X% to Y% in Z months]
+
+THE CHALLENGE (80-120 words)
+What AI platforms said about them before. Which competitors were recommended instead. Why it mattered to pipeline.
+
+THE APPROACH (120-180 words)
+1. Baseline: AI visibility audit across [platforms] on [N] tracked prompts.
+2. Optimize: entity fixes, answer-ready content, citations earned.
+3. Measure: monthly AI share-of-voice reporting.
+
+THE RESULTS
+• [Metric 1, before → after]
+• [Metric 2, before → after]
+• [Business impact: pipeline, demos, deal velocity]
+
+CUSTOMER QUOTE
+"[Quote]" — [Name], [Title], [Customer]
+
+APPROVALS CHECKLIST
+☐ Customer marketing sign-off ☐ Legal sign-off ☐ Logo usage approved ☐ Numbers verified`},
+ {t:'Podcast pitch email', i:8, kind:'Visibility', body:
+`SUBJECT
+Guest idea: why AI now decides which brands buyers shortlist
+
+Hi [Host first name],
+
+I enjoyed your recent episode on [episode topic], especially [specific point].
+
+Your listeners are [audience]. More of them are asking ChatGPT, Gemini and Perplexity which vendors to consider, and most brands have no idea what those answers say about them.
+
+[Speaker name], [title] at LeadAIO, could walk your audience through:
+• How AI platforms choose which brands to recommend
+• The difference between AIO, GEO and AEO, without the jargon
+• Three things any marketing team can check this week
+
+[He/She/They] can share fresh examples from our tracked prompt research.
+
+Would a 30-minute conversation in [month] work? Speaker one-sheet attached.
+
+Thanks,
+[Your name]
+[Title], LeadAIO`},
+ {t:'Webinar outline: Winning the AI Answer', i:8, kind:'Visibility', body:
+`FORMAT
+45 minutes · live · Q&A at the end · recording sent to all registrants
+
+AGENDA
+00-05  Welcome and why this matters now
+05-15  How AI platforms choose sources: what we see across our tracked prompts
+15-25  AIO, GEO and AEO: what each fixes and where to start
+25-35  Live teardown: one brand's AI visibility, before and after (with permission)
+35-45  Q&A
+
+OFFER
+Free AI visibility audit for attendees (book within 14 days)
+
+PROMOTION
+3 emails (−14, −7, −1 days) · LinkedIn posts from speakers · paid LinkedIn to ICP · partner co-promotion`},
+ {t:'One-pager copy', i:3, kind:'Sales asset', body:
+`HEADLINE
+AIO, GEO and AEO in one program
+
+INTRO
+AI platforms now shape how enterprise buyers research and shortlist vendors. LeadAIO makes sure they find, cite and recommend you.
+
+MEASURE
+Baseline audit across ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews. Competitor comparison. Tracked prompt set built around your buyers.
+
+OPTIMIZE
+Entity and knowledge-graph fixes. Answer-ready content. Schema and technical AIO. Citation and review strategy.
+
+PROVE
+Monthly AI share-of-voice reporting, tied to traffic, demos and pipeline.
+
+WHO IT'S FOR
+Marketing, digital and SEO leaders at mid-market and enterprise companies.
+
+CTA
+Book your AI visibility audit · leadaio.com/audit`}
+];
+
+let mediaFilter = 0, mediaKind = 'all';
+function renderMedia(){
+  const inits = [...new Set([...MEDIA_IMAGES, ...MEDIA_TEXT].map(m=>m.i))].sort((a,b)=>a-b);
+  $('#mediaFilters').innerHTML = `<button class="filter" type="button" aria-pressed="${mediaFilter===0}" data-mf="0">All</button>` +
+    inits.map(id=>{ const it=byId(id); return `<button class="filter" type="button" aria-pressed="${mediaFilter===id}" data-mf="${id}"><span class="dot" style="background:${pc(it)}"></span>${pad(id)} ${esc(it.short)}</button>`; }).join('');
+  $('#mediaKinds').innerHTML = [['all','Everything'],['img','Images'],['txt','Copy & code']].map(([k,n])=>`<button class="tab" role="tab" type="button" aria-selected="${mediaKind===k}" data-mk="${k}">${n}</button>`).join('');
+  const ok = m => !mediaFilter || m.i === mediaFilter;
+  const imgs = mediaKind==='txt' ? [] : MEDIA_IMAGES.filter(ok);
+  const txts = mediaKind==='img' ? [] : MEDIA_TEXT.filter(ok);
+  const tag = id => { const it=byId(id); return `<span class="m-tag" style="--pc:${pc(it)}"><span class="dot" style="background:${pc(it)}"></span>${pad(id)} ${esc(it.short)}</span>`; };
+  $('#mediaImgs').innerHTML = imgs.map(m=>`<button class="m-card" type="button" data-img="${m.f}">
+      <span class="m-thumb"><img src="assets/media/${m.f}.jpg" alt="${esc(m.t)}" loading="lazy"></span>
+      <span class="m-meta">${tag(m.i)}<span class="m-fmt">${esc(m.fmt)}</span></span>
+      <span class="m-title">${esc(m.t)}</span></button>`).join('');
+  $('#mediaTxts').innerHTML = txts.map((m,k)=>`<button class="m-doc" type="button" data-txt="${MEDIA_TEXT.indexOf(m)}">
+      <span class="m-meta">${tag(m.i)}<span class="m-fmt">${esc(m.kind)}</span></span>
+      <span class="m-title">${esc(m.t)}</span>
+      <span class="m-snip">${esc(m.body.split('\n').filter(Boolean).slice(0,3).join(' · '))}</span>
+      <span class="m-open">Read and copy →</span></button>`).join('');
+  $('#mediaImgWrap').hidden = !imgs.length; $('#mediaTxtWrap').hidden = !txts.length;
+  $('#mediaCount').textContent = `${imgs.length} image${imgs.length===1?"":"s"} · ${txts.length} copy sample${txts.length===1?"":"s"}`;
+}
+$('#mediaFilters').addEventListener('click', e=>{ const b=e.target.closest('[data-mf]'); if(b){ mediaFilter=+b.dataset.mf; renderMedia(); } });
+$('#mediaKinds').addEventListener('click', e=>{ const b=e.target.closest('[data-mk]'); if(b){ mediaKind=b.dataset.mk; renderMedia(); } });
+renderMedia();
+
+/* Viewer modal for media */
+let viewerOpen = false, viewerFocus = null;
+function openViewer(html){
+  viewerFocus = document.activeElement;
+  $('#vBody').innerHTML = html; $('#viewer').classList.add('show'); $('#viewer').setAttribute('aria-hidden','false');
+  $('#scrim').classList.add('show'); document.body.style.overflow='hidden'; viewerOpen = true; $('#vClose').focus();
+}
+function closeViewer(){
+  if (!viewerOpen) return; viewerOpen = false;
+  $('#viewer').classList.remove('show'); $('#viewer').setAttribute('aria-hidden','true');
+  $('#scrim').classList.remove('show'); document.body.style.overflow='';
+  if (viewerFocus && viewerFocus.focus) viewerFocus.focus();
+}
+$('#mediaImgs').addEventListener('click', e=>{
+  const b=e.target.closest('[data-img]'); if(!b) return; const m=MEDIA_IMAGES.find(x=>x.f===b.dataset.img), it=byId(m.i);
+  openViewer(`<img class="v-img" src="assets/media/${m.f}.jpg" alt="${esc(m.t)}"><div class="v-cap"><div><span class="tag" style="color:${pc(it)}">${pad(it.id)} · ${esc(it.short)} · ${esc(m.fmt)}</span><h3>${esc(m.t)}</h3><p>${esc(m.d)}</p></div><p class="v-note">Sample generated with the OpenAI image API for review. Final assets get produced from the approved brand files.</p></div>`);
+});
+$('#mediaTxts').addEventListener('click', e=>{
+  const b=e.target.closest('[data-txt]'); if(!b) return; const m=MEDIA_TEXT[+b.dataset.txt], it=byId(m.i);
+  openViewer(`<div class="v-cap"><div><span class="tag" style="color:${pc(it)}">${pad(it.id)} · ${esc(it.short)} · ${esc(m.kind)}</span><h3>${esc(m.t)}</h3></div><button class="mini" type="button" id="vCopy">Copy text</button></div><pre class="v-pre" id="vPre">${esc(m.body)}</pre><p class="v-note">Draft sample. Items in [brackets] need real details before use.</p>`);
+});
+$('#vBody').addEventListener('click', e=>{
+  if (e.target.id !== 'vCopy') return;
+  const txt = $('#vPre').textContent, btn = e.target;
+  const ok = ()=>{ btn.textContent='Copied'; setTimeout(()=>btn.textContent='Copy text',1600); };
+  const fallback = ()=>{ const r=document.createRange(); r.selectNodeContents($('#vPre')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Selected. Press Ctrl/Cmd+C'; };
+  try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch(err){ fallback(); }
+});
+$('#vClose').addEventListener('click', closeViewer);
+document.addEventListener('keydown', e=>{ if (viewerOpen && e.key==='Escape'){ e.stopImmediatePropagation(); closeViewer(); } }, true);
+
+
+$('#scrim').addEventListener('click', closeViewer);
+const hm = /^#i([1-8])$/.exec(location.hash);
+if (hm) { mediaFilter = +hm[1]; renderMedia(); }
+</script>
+</body>
+</html>
