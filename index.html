@@ -25,7 +25,7 @@
       <a href="#map">How they connect</a>
       <a href="#scorecard">Scorecard</a>
       <a href="#questions">Open questions</a>
-      <a href="media.html">Media</a>
+      <a href="media.html" hidden data-media-link>Media</a>
     </nav>
   </div>
 </header>
@@ -39,7 +39,7 @@
         <h1>Make LeadAIO the answer AI gives for <em>AI Optimization</em>.</h1>
         <p class="lede">Eight initiatives take us from a new brand to category leader in AIO, GEO and AEO. This page lays out what each one delivers, when it lands, and how they depend on each other.</p>
         <div class="hero-meta" id="pillarChips"></div>
-        <a class="media-cta" href="media.html">View media samples →</a>
+        <a class="media-cta" href="media.html" hidden data-media-link>View media samples →</a>
       </div>
 
       <div class="engine" aria-label="Example AI answer the launch is building toward">
@@ -553,6 +553,8 @@ renderPlan();
 $('#ownerBody').innerHTML = INIT.map(it=>`<tr><td><button type="button" class="pill" data-open="${it.id}"><span class="dot" style="background:${pc(it)}"></span>${pad(it.id)} ${esc(it.short)}</button></td><td style="font-family:var(--f-body);color:var(--ink);white-space:normal">${OWNERS[it.id][0]}</td><td>${OWNERS[it.id][1]}</td></tr>`).join('');
 $('#risks').innerHTML = RISKS.map(([r,i,m])=>`<div class="risk"><b>${esc(r)}</b><span class="imp">Impact: ${esc(i)}</span><p>${esc(m)}</p></div>`).join('');
 
+/* Media page is built (media.html) but hidden for now. Set to true and remove `hidden` from the [data-media-link] elements to show it again. */
+const SHOW_MEDIA = false;
 const MEDIA_COUNT = {1:3,2:3,3:4,4:4,5:2,6:2,7:1,8:3};
 
 /* Scorecard + questions */
@@ -579,7 +581,7 @@ function openDrawer(id){
     <div class="d-sec"><h4>Proposed KPIs</h4><ul class="kpis">${it.kpis.map(k=>`<li>${esc(k)}</li>`).join('')}</ul></div>
     <div class="d-sec"><h4>Needs</h4><div class="links">${it.depends.length?it.depends.map(linkChip).join(''):'<span class="none">No dependencies. Can start now.</span>'}</div></div>
     <div class="d-sec"><h4>Unlocks</h4><div class="links">${unlocks.length?unlocks.map(linkChip).join(''):'<span class="none">Nothing waits on this one</span>'}</div></div>
-    ${MEDIA_COUNT[id]?`<div class="d-sec"><h4>Sample assets</h4><a class="mini" href="media.html#i${id}" style="justify-self:start;text-decoration:none">See ${MEDIA_COUNT[id]} sample${MEDIA_COUNT[id]>1?'s':''} in Media →</a></div>`:''}`;
+    ${SHOW_MEDIA && MEDIA_COUNT[id]?`<div class="d-sec"><h4>Sample assets</h4><a class="mini" href="media.html#i${id}" style="justify-self:start;text-decoration:none">See ${MEDIA_COUNT[id]} sample${MEDIA_COUNT[id]>1?'s':''} in Media →</a></div>`:''}`;
   $('#dBody').scrollTop = 0;
   d.classList.add('show'); d.setAttribute('aria-hidden','false'); $('#scrim').classList.add('show');
   document.body.style.overflow = 'hidden';
