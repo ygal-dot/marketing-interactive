@@ -3,9 +3,9 @@
 :root{
   /* Single black theme with bold, saturated pillar colors */
   --bg:#000000; --surface:#0E0E10; --sunk:#18181C; --ink:#FFFFFF; --muted:#A3A3AD; --line:#2A2A31;
-  --accent:#FFD60A; --accent-ink:#000000; --accent-soft:#3A3000;
-  --cite:#FFD60A; --cite-soft:#2E2600;
-  --p-foundation:#3D6BFF; --p-platform:#00E59B; --p-proof:#FFD60A; --p-reach:#FF2E7E;
+  --accent:#D6AE4B; --accent-ink:#000000; --accent-soft:#3A2F14;
+  --cite:#D6AE4B; --cite-soft:#2C2412;
+  --p-foundation:#3D6BFF; --p-platform:#00E59B; --p-proof:#D6AE4B; --p-reach:#FF2E7E;
   --shadow:0 1px 2px rgba(0,0,0,.6),0 12px 32px rgba(0,0,0,.6);
   --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
   --f-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -298,3 +298,5 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .nav a[aria-current="page"]{color:var(--accent)}
 .media-cta{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:600;font-size:14px;color:var(--accent-ink);background:var(--accent);border-radius:999px;padding:10px 16px;text-decoration:none}
 .media-cta:hover{filter:brightness(1.08)}
+.logo img{display:block;height:26px;width:auto}
+@media (max-width:640px){.logo img{height:22px}}

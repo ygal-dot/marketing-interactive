@@ -3,7 +3,7 @@
 import json, os, sys, base64, urllib.request, concurrent.futures as cf
 out = sys.argv[1]
 BRAND = ("Brand: LeadAIO, an AI Optimization company. Visual style: pure black background, bold white sans-serif type "
-         "(geometric grotesque), signature bright yellow #FFD60A highlight, small accents of electric blue #3D6BFF, mint #00E59B and hot pink #FF2E7E. "
+         "(geometric grotesque), signature gold #D6AE4B highlight, small accents of electric blue #3D6BFF, mint #00E59B and hot pink #FF2E7E. "
          "The wordmark is 'LeadAIO' with 'Lead' in white and 'AIO' in yellow. Subtle black-and-white tech texture (neural network lines or circuit traces). "
          "Premium enterprise B2B look, clean grid, generous spacing. All text must be spelled exactly as given; no other text.")
 P = {
